@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Staking Rewards Calculator on Base App</title>
+    <title>Crypto Staking Rewards Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="title-container">
             <img src="https://pbs.twimg.com/media/G5SXWXWaYAA5wfI?format=jpg&name=medium" alt="Base App Logo" class="logo">
-            <h1>Crypto Staking Rewards Calculator on Base App</h1>
+            <h1>Crypto Staking Rewards Calculator</h1>
         </div>
         <p>Estimate your daily, weekly, monthly, and yearly rewards based on your stake and APY. Toggle compounding for more accurate projections.</p>
         
         <form id="calculatorForm">
             <div class="input-group">
-                <label for="amount">Staked Amount (e.g., $1000 or 10 ETH):</label>
+                <label for="amount">Staked Amount (Example: $1000 or 10 ETH):</label>
                 <input type="number" id="amount" placeholder="Enter amount" step="0.01" value="0" required>
             </div>
             
@@ -30,7 +30,7 @@
                 <label for="compounding">Use Compounding (Daily)?</label>
             </div>
             
-            <button type="button" onclick="updateRewards()">Recalculate (Optional)</button>
+            <button type="button" onclick="updateRewards()">Calculate</button>
         </form>
         
         <div id="results" class="results">
@@ -63,4 +63,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
