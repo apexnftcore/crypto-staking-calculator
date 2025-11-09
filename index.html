@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Staking Rewards Calculator</title>
+    <title>Crypto Staking Rewards Calculator on Base App</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Crypto Staking Rewards Calculator</h1>
-        <p>Estimate your daily, weekly, monthly, and yearly rewards based on your stake and APY.</p>
+        <p>Estimate your daily, weekly, monthly, and yearly rewards based on your stake and APY. Toggle compounding for more accurate projections.</p>
         
         <form id="calculatorForm">
             <div class="input-group">
@@ -20,6 +20,12 @@
             <div class="input-group">
                 <label for="apy">APY (%):</label>
                 <input type="number" id="apy" placeholder="Enter APY (e.g., 5)" step="0.01" required>
+            </div>
+            
+            <div class="input-group checkbox-group">
+                <label>
+                    <input type="checkbox" id="compounding" checked> Use Compounding (Daily)?
+                </label>
             </div>
             
             <button type="submit">Calculate Rewards</button>
@@ -41,6 +47,14 @@
                     <tr id="yearlyRow"><td>Yearly</td><td id="yearlyReward">-</td></tr>
                 </tbody>
             </table>
+            <p class="note"><em>Note: Rewards = Projected Earnings (Simple or Compounded). For compounding, assumes daily frequency.</em></p>
+        </div>
+
+        <div class="footer">
+            <p>Thank you for using the app! Show some love and follow our developer:</p>
+            <p><strong>Apexcore</strong><br>
+            <a href="https://warpcast.com/apexnftcore" target="_blank">apexnftcore.farcaster.eth</a><br>
+            <a href="https://base.app/profile/0x46516B72da90192D27a8DA1bf5D2E5506E85472D?tab=posts" target="_blank">View Posts on Base</a></p>
         </div>
     </div>
     
