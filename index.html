@@ -8,18 +8,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>Crypto Staking Rewards Calculator on Base App</h1>
+        <div class="title-container">
+            <img src="https://raw.githubusercontent.com/mikolajroszak/base/main/logo/symbol/Base_Symbol_Blue.svg" alt="Base App Logo" class="logo">
+            <h1>Crypto Staking Rewards Calculator on Base App</h1>
+        </div>
         <p>Estimate your daily, weekly, monthly, and yearly rewards based on your stake and APY. Toggle compounding for more accurate projections.</p>
         
         <form id="calculatorForm">
             <div class="input-group">
                 <label for="amount">Staked Amount (e.g., $1000 or 10 ETH):</label>
-                <input type="number" id="amount" placeholder="Enter amount" step="0.01" value="0" required>
+                <input type="number" id="amount" placeholder="Enter amount" step="0.01" value="1000" required>
             </div>
             
             <div class="input-group">
                 <label for="apy">APY (%):</label>
-                <input type="number" id="apy" placeholder="Enter APY (e.g., 5)" step="0.01" value="0" required>
+                <input type="number" id="apy" placeholder="Enter APY (e.g., 5)" step="0.01" value="5" required>
             </div>
             
             <div class="input-group checkbox-group">
@@ -60,4 +63,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
