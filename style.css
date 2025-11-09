@@ -30,13 +30,31 @@ p {
     margin-bottom: 20px;
 }
 
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-input {
+input[type="number"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -81,6 +99,35 @@ th {
 
 .hidden {
     display: none;
+}
+
+.note {
+    font-size: 0.9em;
+    color: #666;
+    text-align: center;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+.footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.footer p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 600px) {
