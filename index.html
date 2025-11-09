@@ -8,18 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Crypto Staking Rewards Calculator</h1>
+        <h1>Crypto Staking Rewards Calculator on Base App</h1>
         <p>Estimate your daily, weekly, monthly, and yearly rewards based on your stake and APY. Toggle compounding for more accurate projections.</p>
         
         <form id="calculatorForm">
             <div class="input-group">
                 <label for="amount">Staked Amount (e.g., $1000 or 10 ETH):</label>
-                <input type="number" id="amount" placeholder="Enter amount" step="0.01" required>
+                <input type="number" id="amount" placeholder="Enter amount" step="0.01" value="1000" required>
             </div>
             
             <div class="input-group">
                 <label for="apy">APY (%):</label>
-                <input type="number" id="apy" placeholder="Enter APY (e.g., 5)" step="0.01" required>
+                <input type="number" id="apy" placeholder="Enter APY (e.g., 5)" step="0.01" value="5" required>
             </div>
             
             <div class="input-group checkbox-group">
@@ -27,7 +27,7 @@
                 <label for="compounding">Use Compounding (Daily)?</label>
             </div>
             
-            <button type="submit">Calculate Rewards (Optional)</button>
+            <button type="button" onclick="updateRewards()">Recalculate (Optional)</button>
         </form>
         
         <div id="results" class="results">
@@ -37,22 +37,23 @@
                     <tr>
                         <th>Period</th>
                         <th>Reward</th>
+                        <th>Total Amount</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="dailyRow"><td>Daily</td><td id="dailyReward">0.0000</td></tr>
-                    <tr id="weeklyRow"><td>Weekly</td><td id="weeklyReward">0.0000</td></tr>
-                    <tr id="monthlyRow"><td>Monthly</td><td id="monthlyReward">0.0000</td></tr>
-                    <tr id="yearlyRow"><td>Yearly</td><td id="yearlyReward">0.0000</td></tr>
+                    <tr id="dailyRow"><td>Daily</td><td id="dailyReward">0.0000</td><td id="dailyTotal">0.0000</td></tr>
+                    <tr id="weeklyRow"><td>Weekly</td><td id="weeklyReward">0.0000</td><td id="weeklyTotal">0.0000</td></tr>
+                    <tr id="monthlyRow"><td>Monthly</td><td id="monthlyReward">0.0000</td><td id="monthlyTotal">0.0000</td></tr>
+                    <tr id="yearlyRow"><td>Yearly</td><td id="yearlyReward">0.0000</td><td id="yearlyTotal">0.0000</td></tr>
                 </tbody>
             </table>
-            <p class="note"><em>Note: Rewards = Projected Earnings (Simple or Compounded). Updates live as you type/toggle. For compounding, assumes daily frequency.</em></p>
+            <p class="note"><em>Note: Rewards = Projected Earnings (Simple or Compounded). Total = Stake + Rewards. Updates live as you type/toggle. Based on standard formula A = P(1 + r/n)^(n*t).</em></p>
         </div>
 
         <div class="footer">
             <p>If you like this app, give our developer a follow:</p>
-            <p><strong>Apexcore</strong><br>
-            <a href="https://base.app/profile/apexnftcore" target="_blank">View Posts on Base</a></p>
+            <p><strong>👇</strong><br>
+            <a href="https://base.app/profile/apexnftcore" target="_blank">Apexcore</a></p>
         </div>
     </div>
     
