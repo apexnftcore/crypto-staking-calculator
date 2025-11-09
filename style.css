@@ -16,9 +16,23 @@ body {
     width: 100%;
 }
 
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
 h1 {
     text-align: center;
     color: #333;
+    margin: 0;  /* Remove default margin for flex alignment */
 }
 
 p {
@@ -99,10 +113,6 @@ th {
     background: #f8f9fa;
 }
 
-.hidden {
-    display: none;
-}
-
 .note {
     font-size: 0.9em;
     color: #666;
@@ -141,5 +151,11 @@ th {
     }
     table {
         font-size: 0.9em;
+    }
+    .title-container {
+        gap: 8px;
+    }
+    .logo {
+        height: 32px;  /* Smaller on mobile */
     }
 }
