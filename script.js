@@ -1,57 +1,52 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('calculatorForm');
     const amountInput = document.getElementById('amount');
     const apyInput = document.getElementById('apy');
     const compoundingCheckbox = document.getElementById('compounding');
-    const results = document.getElementById('results');
 
-    // Function to calculate and update
+    // Function to calculate and update (standard compounding formula)
     function updateRewards() {
-        const amount = parseFloat(amountInput.value);
-        const apy = parseFloat(apyInput.value);
+        const amount = parseFloat(amountInput.value) || 0;
+        const apy = parseFloat(apyInput.value) || 0;
         const useCompounding = compoundingCheckbox.checked;
         
-        if (isNaN(amount) || isNaN(apy) || amount <= 0 || apy <= 0) {
-            // Reset to zeros if invalid
-            document.getElementById('dailyReward').textContent = '0.0000';
-            document.getElementById('weeklyReward').textContent = '0.0000';
-            document.getElementById('monthlyReward').textContent = '0.0000';
-            document.getElementById('yearlyReward').textContent = '0.0000';
+        if (amount <= 0 || apy <= 0) {
+            // Reset if invalid
+            ['daily', 'weekly', 'monthly', 'yearly'].forEach(period => {
+                document.getElementById(`${period}Reward`).textContent = '0.0000';
+                document.getElementById(`${period}Total`).textContent = '0.0000';
+            });
             return;
         }
         
-        const r = apy / 100;  // Annual rate as decimal
-        const n = 365;  // Daily compounding frequency
+        const r = apy / 100;  // Rate as decimal
+        const n = 365;  // Daily compounding
         
-        // Calculate rewards based on mode
-        let daily, weekly, monthly, yearly;
+        // Time fractions for each period
+        const times = {
+            daily: 1 / 365,
+            weekly: 7 / 365,
+            monthly: 1 / 12,
+            yearly: 1
+        };
         
-        if (!useCompounding) {
-            // Simple interest
-            daily = (amount * r) / 365;
-            weekly = (amount * r) / 52;
-            monthly = (amount * r) / 12;
-            yearly = amount * r;
-        } else {
-            // Compound interest: Reward = [P * (1 + r/n)^(n*t)] - P
-            // Daily: t = 1/365
-            daily = amount * (Math.pow(1 + r / n, n * (1 / 365)) - 1);
+        // Calculate for each period
+        Object.keys(times).forEach(period => {
+            const t = times[period];
+            let reward, total;
             
-            // Weekly: t = 7/365
-            weekly = amount * (Math.pow(1 + r / n, n * (7 / 365)) - 1);
+            if (!useCompounding) {
+                // Simple interest
+                reward = amount * r * t;
+                total = amount + reward;
+            } else {
+                // Compound interest (standard formula)
+                total = amount * Math.pow(1 + r / n, n * t);
+                reward = total - amount;
+            }
             
-            // Monthly: t = 1/12 (approx 30.4167 days)
-            monthly = amount * (Math.pow(1 + r / n, n * (1 / 12)) - 1);
-            
-            // Yearly: t = 1
-            yearly = amount * (Math.pow(1 + r / n, n * 1) - 1);
-        }
-        
-        // Update table
-        document.getElementById('dailyReward').textContent = daily.toFixed(4);
-        document.getElementById('weeklyReward').textContent = weekly.toFixed(4);
-        document.getElementById('monthlyReward').textContent = monthly.toFixed(4);
-        document.getElementById('yearlyReward').textContent = yearly.toFixed(4);
+            document.getElementById(`${period}Reward`).textContent = reward.toFixed(4);
+            document.getElementById(`${period}Total`).textContent = total.toFixed(4);
+        });
     }
 
     // Real-time listeners
@@ -59,12 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
     apyInput.addEventListener('input', updateRewards);
     compoundingCheckbox.addEventListener('change', updateRewards);
 
-    // Optional button submit (for legacy)
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        updateRewards();
-    });
-
-    // Initial calc if defaults filled (optional)
+    // Initial calculation with defaults
     updateRewards();
 });
